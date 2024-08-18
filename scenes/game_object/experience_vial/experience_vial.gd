@@ -13,7 +13,8 @@ func tween_collect(percent: float, start_pos: Vector2):
 	global_position = start_pos.lerp(player.global_position, percent)
 	
 	var dir_from_start = player.global_position - start_pos
-	rotation_degrees = rad_to_deg(dir_from_start.angle()) + 90
+	var target_rotation_deg = rad_to_deg(dir_from_start.angle()) + 90
+	rotation_degrees = lerp_angle(rotation_degrees, target_rotation_deg, 1 - exp(-get_process_delta_time()))
 
 func collect():
 	#GameEvents.emit_exp_vial_collected(1)
