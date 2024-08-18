@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://btjcd7ees01hc"]
+
+[ext_resource type="Script" path="res://scenes/manager/upgrade_manager.gd" id="1_0itq7"]
+[ext_resource type="Resource" uid="uid://dtgqr0pghbtuh" path="res://resources/upgrades/sword_rate.tres" id="2_b3q2o"]
+[ext_resource type="PackedScene" uid="uid://dqxxsbs4iu7d5" path="res://scenes/ui/upgrade_screen.tscn" id="3_5x2p5"]
+[ext_resource type="PackedScene" uid="uid://bvwuvi3rdxuvf" path="res://scenes/ability/axe_ability_controller/axe_ability_controller.tscn" id="3_scw5s"]
+[ext_resource type="Script" path="res://resources/upgrades/ability.gd" id="4_l25us"]
+
+[sub_resource type="Resource" id="Resource_wq7yt"]
+script = ExtResource("4_l25us")
+ability_controller_scene = ExtResource("3_scw5s")
+id = "axe"
+max_quantity = 1
+name = "Axe"
+description = "Periodically sends out a spinning axe."
+
+[node name="UpgradeManager" type="Node"]
+script = ExtResource("1_0itq7")
+upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("2_b3q2o"), SubResource("Resource_wq7yt")])
+upgrade_screen_scene = ExtResource("3_5x2p5")

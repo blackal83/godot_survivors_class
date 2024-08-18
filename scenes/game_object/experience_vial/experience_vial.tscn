@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dappe264xb17u"]
+
+[ext_resource type="Script" path="res://scenes/game_object/experience_vial/experience_vial.gd" id="1_rfmbw"]
+[ext_resource type="Texture2D" uid="uid://b78ilwrk0iovq" path="res://scenes/game_object/experience_vial/experience_vial.png" id="2_j286d"]
+
+[sub_resource type="GDScript" id="GDScript_kntbd"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4b1bs"]
+radius = 16.0
+
+[node name="ExperienceVial" type="Node2D"]
+script = ExtResource("1_rfmbw")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = SubResource("GDScript_kntbd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4b1bs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_j286d")
