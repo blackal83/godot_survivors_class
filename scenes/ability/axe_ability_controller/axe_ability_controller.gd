@@ -31,4 +31,4 @@ func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Diction
 		$Timer.wait_time = base_wait_time * (1 - percent_reduction)
 		$Timer.start()
 	elif upgrade.id == "axe_damage":
-		additional_damage_percent += 1 + (current_upgrades["axe_damage"]["quantity"] * 0.1)
+		additional_damage_percent = 1 + (current_upgrades["axe_damage"]["quantity"] * 0.1)

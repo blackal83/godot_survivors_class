@@ -3,21 +3,44 @@
 [ext_resource type="Script" path="res://scenes/ui/ability_upgrade_card.gd" id="1_ojndh"]
 
 [node name="AbilityUpgradeCard" type="PanelContainer"]
-custom_minimum_size = Vector2(120, 150)
+custom_minimum_size = Vector2(150, 150)
+offset_right = 150.0
+offset_bottom = 123.0
 script = ExtResource("1_ojndh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="NameLabel" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"AlternatePanelContainer"
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "TEst NAme"
+theme_override_colors/font_outline_color = Color(0.148989, 0.168536, 0.266728, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Test Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 150)
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.148989, 0.168536, 0.266728, 1)
+theme_override_colors/font_outline_color = Color(0.148989, 0.168536, 0.266728, 1)
+theme_override_constants/outline_size = 8
 text = "Write some description here"
 autowrap_mode = 2
 
