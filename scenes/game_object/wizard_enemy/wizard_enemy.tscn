@@ -1,12 +1,53 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmttdx2ccgh46"]
+[gd_scene load_steps=16 format=3 uid="uid://dmttdx2ccgh46"]
 
 [ext_resource type="Script" path="res://scenes/game_object/wizard_enemy/wizard_enemy.gd" id="1_jn3jg"]
 [ext_resource type="PackedScene" uid="uid://dfl8b7dwovkmt" path="res://scenes/component/health_component.tscn" id="1_ud8mw"]
 [ext_resource type="PackedScene" uid="uid://cb2jvdfmlif5c" path="res://scenes/component/death_component.tscn" id="2_1kic0"]
 [ext_resource type="Texture2D" uid="uid://djymbcic047k8" path="res://scenes/game_object/wizard_enemy/wizard_enemy.png" id="3_6ib0j"]
+[ext_resource type="PackedScene" uid="uid://be0a3utqhks6d" path="res://scenes/component/hit_flash_component.tscn" id="3_lfuv8"]
 [ext_resource type="PackedScene" uid="uid://r0uqrwxe2hfm" path="res://scenes/component/velocity_component.tscn" id="3_wehfv"]
 [ext_resource type="PackedScene" uid="uid://de6vpcii22mij" path="res://scenes/component/vial_drop_component.tscn" id="4_ej6km"]
 [ext_resource type="PackedScene" uid="uid://bkvg4d2mrptb6" path="res://scenes/component/hurtbox_component.tscn" id="4_s70vh"]
+[ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="4_ws005"]
+
+[sub_resource type="Animation" id="Animation_tjado"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_e8ba1"]
 resource_name = "walk"
@@ -67,50 +108,16 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_tjado"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3qnp3"]
 _data = {
 "RESET": SubResource("Animation_tjado"),
 "walk": SubResource("Animation_e8ba1")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knkme"]
+resource_local_to_scene = true
+shader = ExtResource("4_ws005")
+shader_parameter/lerp_percent = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nfgth"]
 radius = 8.0
@@ -131,6 +138,11 @@ autoplay = "walk"
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_ud8mw")]
 max_health = 30.0
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_comp", "sprite") instance=ExtResource("3_lfuv8")]
+health_comp = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_knkme")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_wehfv")]
 max_speed = 60

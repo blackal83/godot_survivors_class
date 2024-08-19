@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://e8m6l3yda7wd"]
+[gd_scene load_steps=16 format=3 uid="uid://e8m6l3yda7wd"]
 
 [ext_resource type="Texture2D" uid="uid://w033cudtpt1x" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_55ca2"]
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_i80v6"]
 [ext_resource type="PackedScene" uid="uid://dfl8b7dwovkmt" path="res://scenes/component/health_component.tscn" id="2_j1cax"]
 [ext_resource type="PackedScene" uid="uid://de6vpcii22mij" path="res://scenes/component/vial_drop_component.tscn" id="3_fdfts"]
+[ext_resource type="PackedScene" uid="uid://be0a3utqhks6d" path="res://scenes/component/hit_flash_component.tscn" id="3_qigm1"]
+[ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="4_5ibxg"]
 [ext_resource type="PackedScene" uid="uid://r0uqrwxe2hfm" path="res://scenes/component/velocity_component.tscn" id="4_5xl2q"]
 [ext_resource type="PackedScene" uid="uid://bkvg4d2mrptb6" path="res://scenes/component/hurtbox_component.tscn" id="4_eujfs"]
 [ext_resource type="PackedScene" uid="uid://cb2jvdfmlif5c" path="res://scenes/component/death_component.tscn" id="4_hjsd4"]
@@ -70,6 +72,11 @@ _data = {
 "walk": SubResource("Animation_u3bpo")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q6asl"]
+resource_local_to_scene = true
+shader = ExtResource("4_5ibxg")
+shader_parameter/lerp_percent = 0.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6trp"]
 radius = 12.0
 
@@ -90,6 +97,11 @@ autoplay = "walk"
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_j1cax")]
 
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_comp", "sprite") instance=ExtResource("3_qigm1")]
+health_comp = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_q6asl")
+
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("3_fdfts")]
 drop_percent = 0.35
 health_comp = NodePath("../HealthComponent")
@@ -100,18 +112,18 @@ health_comp = NodePath("../HealthComponent")
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
-[node name="Visuals" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
-texture = ExtResource("1_55ca2")
-offset = Vector2(0, -4)
-
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("4_eujfs")]
 health_comp = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_r6trp")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("1_55ca2")
+offset = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
