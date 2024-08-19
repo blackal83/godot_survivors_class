@@ -13,7 +13,7 @@ func remove_item(item_to_remove):
 	weight_sum = 0
 	for item in items:
 		weight_sum += item["weight"]
-	var test = 1
+
 	
 func pick_item(exclude: Array = []):
 	var adjusted_items: Array[Dictionary] = items
