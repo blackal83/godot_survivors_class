@@ -8,6 +8,13 @@ signal back_pressed
 @onready var back_button = %BackButton
 
 func _ready():
+	if get_parent().name == "PauseMenu":
+		$TileMap.visible = false
+		$Vignette.visible = false
+	else:
+		$TileMap.visible = true
+		$Vignette.visible = true
+		
 	window_button.pressed.connect(on_window_button_pressed)
 	update_display()
 	sfx_volume_slider.value_changed.connect(on_audio_volume_changed.bind("sfx"))
