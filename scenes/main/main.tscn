@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://brkkrbvtvlnto"]
+[gd_scene load_steps=13 format=3 uid="uid://brkkrbvtvlnto"]
 
 [ext_resource type="PackedScene" uid="uid://c5seambejrtif" path="res://scenes/game_object/game_camera/game_camera.tscn" id="1_2v8fj"]
 [ext_resource type="PackedScene" uid="uid://cb73gr6wan3l" path="res://scenes/ui/arena_time_ui.tscn" id="1_4w58m"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ce6f17qhj0cj8" path="res://scenes/ui/experience_bar.tscn" id="2_snxgi"]
 [ext_resource type="PackedScene" uid="uid://b7bnh7du40ib3" path="res://scenes/manager/experience_manager.tscn" id="4_bxgic"]
 [ext_resource type="PackedScene" uid="uid://btjcd7ees01hc" path="res://scenes/manager/upgrade_manager.tscn" id="6_0x0ca"]
+[ext_resource type="PackedScene" uid="uid://chpcu6ooxywtu" path="res://scenes/ui/vignette.tscn" id="12_cq42t"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kkadf")
@@ -48,3 +49,5 @@ unique_name_in_owner = true
 position = Vector2(320, 211)
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
+
+[node name="Vignette" parent="." instance=ExtResource("12_cq42t")]
