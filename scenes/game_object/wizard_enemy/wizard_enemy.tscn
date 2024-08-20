@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmttdx2ccgh46"]
+[gd_scene load_steps=22 format=3 uid="uid://dmttdx2ccgh46"]
 
 [ext_resource type="Script" path="res://scenes/game_object/wizard_enemy/wizard_enemy.gd" id="1_jn3jg"]
 [ext_resource type="PackedScene" uid="uid://dfl8b7dwovkmt" path="res://scenes/component/health_component.tscn" id="1_ud8mw"]
@@ -9,6 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://de6vpcii22mij" path="res://scenes/component/vial_drop_component.tscn" id="4_ej6km"]
 [ext_resource type="PackedScene" uid="uid://bkvg4d2mrptb6" path="res://scenes/component/hurtbox_component.tscn" id="4_s70vh"]
 [ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="4_ws005"]
+[ext_resource type="PackedScene" uid="uid://dfl426mtkhwlh" path="res://scenes/component/random_stream_player_2d_component.tscn" id="8_ktpqp"]
+[ext_resource type="AudioStream" uid="uid://c4cpx1bcvovb6" path="res://assets/audio/footstep_carpet_000.ogg" id="9_k388o"]
+[ext_resource type="AudioStream" uid="uid://byqi8i4gxupil" path="res://assets/audio/footstep_carpet_001.ogg" id="10_le3xl"]
+[ext_resource type="AudioStream" uid="uid://dvmk05cywqr" path="res://assets/audio/footstep_carpet_002.ogg" id="11_co4nd"]
+[ext_resource type="AudioStream" uid="uid://cjt8dkuxb26v" path="res://assets/audio/footstep_carpet_003.ogg" id="12_2iado"]
+[ext_resource type="AudioStream" uid="uid://bt6n7gfqruxsi" path="res://assets/audio/footstep_carpet_004.ogg" id="13_uv00v"]
 
 [sub_resource type="Animation" id="Animation_tjado"]
 length = 0.001
@@ -156,13 +162,9 @@ health_comp = NodePath("../HealthComponent")
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
-[node name="Visuals" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
-rotation = 0.261799
-scale = Vector2(0.9, 1.1)
-texture = ExtResource("3_6ib0j")
-offset = Vector2(0, -8)
+[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("8_ktpqp")]
+max_distance = 300.0
+streams = Array[AudioStream]([ExtResource("9_k388o"), ExtResource("10_le3xl"), ExtResource("11_co4nd"), ExtResource("12_2iado"), ExtResource("13_uv00v")])
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("4_s70vh")]
 position = Vector2(0, -7)
@@ -171,6 +173,14 @@ health_comp = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 visible = false
 shape = SubResource("CircleShape2D_nfgth")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+rotation = 0.261799
+scale = Vector2(0.9, 1.1)
+texture = ExtResource("3_6ib0j")
+offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
