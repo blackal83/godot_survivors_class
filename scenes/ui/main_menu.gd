@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var options_scene = preload("res://scenes/ui/options_menu.tscn")
+
 func _ready():
 	$%PlayButton.pressed.connect(on_play_pressed)
 	
@@ -13,7 +14,7 @@ func on_play_pressed():
 func on_options_pressed():
 	var options_inst = options_scene.instantiate()
 	add_child(options_inst)
-	#options_inst.back_pressed.connect(on_options_closed.bind(options_inst))
+	options_inst.back_pressed.connect(on_options_closed.bind(options_inst))
 
 func on_quit_pressed():
 	get_tree().quit()

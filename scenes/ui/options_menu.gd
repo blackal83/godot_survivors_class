@@ -47,4 +47,4 @@ func on_audio_volume_changed(value: float, bus_name: String):
 	
 func on_back_button_pressed():
 	back_pressed.emit()
-	queue_free()
+	#queue_free()

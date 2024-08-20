@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3xmj0fy7qurw"]
+[gd_scene load_steps=5 format=3 uid="uid://b3xmj0fy7qurw"]
 
 [ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="1_dc8m2"]
 [ext_resource type="TileSet" uid="uid://d0tw82r3v0xhf" path="res://resources/tileset.tres" id="1_w2mme"]
 [ext_resource type="PackedScene" uid="uid://llqvteeod87r" path="res://scenes/ui/sound_button.tscn" id="2_3hx3h"]
+[ext_resource type="PackedScene" uid="uid://chpcu6ooxywtu" path="res://scenes/ui/vignette.tscn" id="2_vyyk8"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_dc8m2")
+
+[node name="Vignette" parent="." instance=ExtResource("2_vyyk8")]
+layer = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(1, 22)
@@ -38,8 +42,7 @@ size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0.14902, 0.168627, 0.266667, 1)
-theme_override_constants/outline_size = 8
+theme_type_variation = &"BlueOutlineLabel8"
 theme_override_font_sizes/font_size = 32
 text = "Blackal's 
 Death Arena"
