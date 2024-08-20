@@ -1,10 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://o33sx734aap7"]
+[gd_scene load_steps=19 format=3 uid="uid://o33sx734aap7"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_t77yp"]
 [ext_resource type="PackedScene" uid="uid://dfl8b7dwovkmt" path="res://scenes/component/health_component.tscn" id="2_33fa1"]
 [ext_resource type="Texture2D" uid="uid://dwbltnguhigie" path="res://scenes/game_object/player/player.png" id="2_45lhj"]
 [ext_resource type="PackedScene" uid="uid://r0uqrwxe2hfm" path="res://scenes/component/velocity_component.tscn" id="2_66hsc"]
 [ext_resource type="PackedScene" uid="uid://cat4kphqdfmbr" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_n1k2y"]
+[ext_resource type="PackedScene" uid="uid://dfl426mtkhwlh" path="res://scenes/component/random_stream_player_2d_component.tscn" id="3_yduom"]
+[ext_resource type="AudioStream" uid="uid://bygr1uw0uoapo" path="res://assets/audio/impactMining_000.ogg" id="4_wjncl"]
+[ext_resource type="AudioStream" uid="uid://btwim2vgihi3k" path="res://assets/audio/impactMining_001.ogg" id="5_wi1bk"]
+[ext_resource type="AudioStream" uid="uid://7fa7v5vq7p4j" path="res://assets/audio/impactMining_002.ogg" id="6_87mn3"]
+[ext_resource type="AudioStream" uid="uid://cg0quc3xs4hv6" path="res://assets/audio/impactMining_003.ogg" id="7_bonpk"]
+[ext_resource type="AudioStream" uid="uid://dunlbihwhrwcj" path="res://assets/audio/impactMining_004.ogg" id="8_srxuw"]
 
 [sub_resource type="Animation" id="Animation_dlig5"]
 length = 0.001
@@ -114,16 +120,19 @@ collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_t77yp")
 
-[node name="VelocityComponent" parent="." instance=ExtResource("2_66hsc")]
-max_speed = 90
-acceleration = 25.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_k47ef")
 }
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_33fa1")]
+
+[node name="HitRandomStreamPlayerComponent" parent="." instance=ExtResource("3_yduom")]
+streams = Array[AudioStream]([ExtResource("4_wjncl"), ExtResource("5_wi1bk"), ExtResource("6_87mn3"), ExtResource("7_bonpk"), ExtResource("8_srxuw")])
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_66hsc")]
+max_speed = 90
+acceleration = 25.0
 
 [node name="Abilities" type="Node" parent="."]
 

@@ -108,10 +108,10 @@ health_comp = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 hit_flash_material = SubResource("ShaderMaterial_q6asl")
 
+[node name="VelocityComponent" parent="." instance=ExtResource("4_5xl2q")]
+
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("3_fdfts")]
 health_comp = NodePath("../HealthComponent")
-
-[node name="VelocityComponent" parent="." instance=ExtResource("4_5xl2q")]
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_hjsd4")]
 health_component = NodePath("../HealthComponent")
