@@ -111,6 +111,7 @@ hit_flash_material = SubResource("ShaderMaterial_q6asl")
 [node name="VelocityComponent" parent="." instance=ExtResource("4_5xl2q")]
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("3_fdfts")]
+drop_percent = 0.35
 health_comp = NodePath("../HealthComponent")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_hjsd4")]
@@ -118,7 +119,6 @@ health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("10_nv7em")]
-max_distance = 300.0
 streams = Array[AudioStream]([ExtResource("10_oo8rf"), ExtResource("12_280jp"), ExtResource("13_21nbe"), ExtResource("14_jk4q1"), ExtResource("15_mqixs")])
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("4_eujfs")]

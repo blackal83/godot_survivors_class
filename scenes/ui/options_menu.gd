@@ -53,5 +53,7 @@ func on_audio_volume_changed(value: float, bus_name: String):
 	update_display()
 	
 func on_back_button_pressed():
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	back_pressed.emit()
 	#queue_free()

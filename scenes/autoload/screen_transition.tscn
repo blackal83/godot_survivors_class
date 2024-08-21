@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://fbywosvnt8gp"]
+
+[ext_resource type="Script" path="res://scenes/autoload/screen_transition.gd" id="1_3m3pi"]
+[ext_resource type="Shader" path="res://scenes/autoload/screen_transition.gdshader" id="1_nvdad"]
+[ext_resource type="Texture2D" uid="uid://bpv8xnf7jowun" path="res://assets/ui/screen_transition.png" id="2_jpe0v"]
+
+[sub_resource type="Animation" id="Animation_4mw6f"]
+resource_name = "default"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_3bimy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uvnri"]
+_data = {
+"RESET": SubResource("Animation_3bimy"),
+"default": SubResource("Animation_4mw6f")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1dm"]
+shader = ExtResource("1_nvdad")
+shader_parameter/transition_color = Color(0.247059, 0.14902, 0.192157, 1)
+shader_parameter/percent = 0.0
+shader_parameter/transition_texture = ExtResource("2_jpe0v")
+
+[node name="ScreenTransition" type="CanvasLayer"]
+process_mode = 3
+layer = 5
+script = ExtResource("1_3m3pi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uvnri")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_7y1dm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

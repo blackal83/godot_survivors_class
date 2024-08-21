@@ -12,12 +12,16 @@ config_version=5
 
 config/name="2dSurvivorsCourse"
 run/main_scene="res://scenes/ui/main_menu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="BlackalsDeathArena"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
 [autoload]
 
 GameEvents="*res://scenes/autoload/game_events.tscn"
 MusicPlayer="*res://scenes/autoload/music_player.tscn"
+ScreenTransition="*res://scenes/autoload/screen_transition.tscn"
+MetaProgression="*res://scenes/autoload/meta_progression.tscn"
 
 [debug]
 
