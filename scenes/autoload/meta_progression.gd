@@ -29,8 +29,14 @@ func add_meta_upgrade(upgrade: MetaUpgrade):
 		}
 	
 	save_data["meta_upgrades"][upgrade.id]["quantity"] += 1
+	save()
 	
-	
+func get_upgrade_quantity(upgrade_id: String):
+	var quantity = 0
+	if save_data["meta_upgrades"].has(upgrade_id):
+		quantity = save_data["meta_upgrades"][upgrade_id]["quantity"]
+	return quantity
+
 func on_exp_collected(number: float):
 	save_data["meta_upgrade_currency"] += number
 	
